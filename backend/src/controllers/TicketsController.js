@@ -39,5 +39,22 @@ module.exports = {
             .delete();
 
         return response.status(204).send();
+    },
+
+    async updateTicket(request, response) {
+        const { id, name, subject, description } = request.body;
+
+        try {
+
+            await connection('tickets')
+                .update({ id, name, subject, description })
+                .where('id', id)
+
+            return response.send();
+
+        } catch (error) {
+            next(error)
+        }
+
     }
 }
