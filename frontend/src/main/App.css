@@ -142,6 +142,7 @@ body{
 .ticket_form {
     position:fixed;
     top:0;
+	right:-620px;
     height:100vh;
     background:#fff;
     width:620px;
@@ -150,4 +151,18 @@ body{
 	box-shadow: -8px -1px 48px -3px rgba(0,0,0,0.22);
 	-webkit-box-shadow: -8px -1px 48px -3px rgba(0,0,0,0.22);
 	-moz-box-shadow: -8px -1px 48px -3px rgba(0,0,0,0.22);
+}
+.ticket_form.ticket_form_expanded {
+    right:0
+}
+.ticket_form.ticket_form_expanded:before {
+	content: '';
+    background: #00000038;
+    width: calc(100% - 620px);
+    height: 100vh;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
 }

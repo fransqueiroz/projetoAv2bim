@@ -20,6 +20,7 @@ export default class Tickets extends Component {
         }
         this.handleRemove = this.handleRemove.bind(this)
         this.openForm = this.openForm.bind(this)
+        this.closeForm = this.closeForm.bind(this)
         this.refresh()
     }
 
@@ -29,13 +30,15 @@ export default class Tickets extends Component {
     }
 
     openForm(ticket){
-        this.setState(
-            {
-                open: true,
-                ticket: ticket
+        this.setState({
+            open: true
+        })
+    }
 
-            }
-        )
+    closeForm(){
+        this.setState({
+            open: false
+        })
     }
 
     refresh(){
@@ -52,15 +55,15 @@ export default class Tickets extends Component {
 
     render(){
         return(
-            <div className="tickets_container">
-                <TicketsForm
-                    open={this.state.open}
-                    ticket={this.state.ticket}
-                />
+            <div className="tickets_container" >
                 <TicketsList
                     list={this.state.list}
                     handleRemove={this.handleRemove}
                     openForm={this.openForm}
+                />
+                <TicketsForm
+                    open={this.state.open}
+                    closeForm={this.closeForm}
                 />
             </div>
         )
