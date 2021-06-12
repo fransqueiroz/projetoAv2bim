@@ -1,7 +1,21 @@
 import React from 'react'
 
+import FormList from '../Components/FormList'
+
 export default props => {
 
+    const renderForm = () => {
+
+        if(Object.values(props.ticket).length === 0 ){
+            return (
+                <FormList/>
+            )
+        } else {
+            return(
+                <FormList ticket={props.ticket}/>
+            )
+        }
+    }
 
     return (
         <React.Fragment>
@@ -12,7 +26,7 @@ export default props => {
                     >
                         x
                     </div>
-                    <div className="content">Form</div>
+                    <div className="content">{renderForm()}</div>
                 </div>
             </div>
 

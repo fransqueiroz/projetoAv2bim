@@ -43,6 +43,12 @@ export default props => {
     return (
         <div className="tickets_list">
             <h1 className="titles">Tickets</h1>
+            <a className="button_add_tickets"
+                onClick={() => props.openFormList()}
+            >
+                <span class="material-icons">add_circle</span>
+                Adicionar Ticket
+            </a>
             <div className="tickets_container_card">
                 {renderList()}
             </div>

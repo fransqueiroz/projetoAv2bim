@@ -71,7 +71,7 @@ body{
 }
 
 .titles{
-    text-align:center;
+    text-align:left;
     padding: 25px 15px;
 	font-size: 30px;
     font-weight: 900;
@@ -114,7 +114,9 @@ body{
     font-weight:300;
 }
 .tickets_container_card .ticketsList .ticket_body{
-    padding-top:0px5
+    padding-top:10px;
+	display: flex;
+	flex-wrap: wrap;
 }
 .tickets_container_card .ticketsList .ticket_body .ticket_description{
     text-align:left;
@@ -165,4 +167,28 @@ body{
     top: 0;
     left: 0;
     z-index: 0;
+}
+.tickets_list{
+    position:relative;
+}
+.tickets_list .button_add_tickets{
+    position: absolute;
+    top: 22px;
+    right: 50px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    background: #00c800;
+    border-color: #00c800;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 12px;
+	cursor: pointer;
+}
+.tickets_list .button_add_tickets:hover{
+    opacity:.8
+}
+.tickets_list .button_add_tickets .material-icons{
+	font-size: 20px;
+    margin-right: 5px;
 }
