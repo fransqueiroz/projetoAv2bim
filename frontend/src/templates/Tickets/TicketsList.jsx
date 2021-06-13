@@ -1,11 +1,29 @@
 import React from 'react'
 
+//eslint-disable-next-line
 export default props => {
+
+    const renderMsgSuccess = () => {
+        const msgSuccess = props.msgSuccess;
+
+        if(msgSuccess){
+            return(
+                <div className="msg_success">
+                    <div className="close_msg"
+                        onClick={props.closeMsg}
+                    >x </div>
+                    <p>{msgSuccess}</p>
+                </div>
+            )
+        }
+    }
 
     const renderList = () => {
         const list = props.list
 
-        if(list){
+        console.log(list, 'teste')
+
+        if(Object.keys(list).length !== 0){
             return list.map( ticket => (
                 <div className="ticketsList" id={ticket.id} key={ticket.id}>
                     <div className="ticket_update"
@@ -49,6 +67,7 @@ export default props => {
                 <span class="material-icons">add_circle</span>
                 Adicionar Ticket
             </a>
+            {renderMsgSuccess()}
             <div className="tickets_container_card">
                 {renderList()}
             </div>

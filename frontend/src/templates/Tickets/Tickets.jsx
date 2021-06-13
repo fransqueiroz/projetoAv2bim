@@ -16,12 +16,17 @@ export default class Tickets extends Component {
             description: '',
             list: [],
             open: false,
-            ticket: {}
+            msgSuccess: ''
         }
         this.handleRemove = this.handleRemove.bind(this)
         this.openForm = this.openForm.bind(this)
         this.openFormList = this.openFormList.bind(this)
         this.closeForm = this.closeForm.bind(this)
+        this.handleChangeName = this.handleChangeName.bind(this)
+        this.handleChangeSubject = this.handleChangeSubject.bind(this)
+        this.handleChangeDescription = this.handleChangeDescription.bind(this)
+        this.handleAdd = this.handleAdd.bind(this)
+        this.closeMsg = this.closeMsg.bind(this)
         this.refresh()
     }
 
@@ -31,15 +36,23 @@ export default class Tickets extends Component {
     }
 
     openForm(ticket){
+        this.closeMsg()
         this.setState({
             open: true,
-            ticket: ticket
+            id: ticket.id,
+            name: ticket.name,
+            subject: ticket.subject,
+            description: ticket.description
         })
     }
     openFormList(){
+        this.closeMsg()
         this.setState({
             open: true,
-            ticket: {}
+            id: '',
+            name: '',
+            subject: '',
+            description: '',
         })
     }
 
@@ -47,6 +60,51 @@ export default class Tickets extends Component {
         this.setState({
             open: false
         })
+    }
+
+    handleChangeName(event) {
+        event.preventDefault();
+        this.setState({...this.state, name: event.target.value})
+    }
+
+    handleChangeSubject(event) {
+        event.preventDefault();
+        this.setState({...this.state, subject: event.target.value})
+    }
+
+    handleChangeDescription(event) {
+        event.preventDefault();
+        this.setState({...this.state, description: event.target.value})
+    }
+
+    closeMsg(){
+        var close_msg = document.querySelector('.msg_success')
+        if(close_msg){
+            close_msg.remove()
+        }
+    }
+
+    handleAdd() {
+        const id = this.state.id;
+        const name = this.state.name;
+        const subject = this.state.subject;
+        const description = this.state.description;
+
+        if(id){
+            axios.put(URL, {id,name,subject,description})
+            .then(resp => {
+                this.setState({msgSuccess: resp.data.message})
+                this.closeForm()
+                this.refresh()
+            })
+        } else {
+            axios.post(URL, {name,subject,description})
+            .then(resp => {
+                this.setState({msgSuccess: resp.data.message})
+                this.closeForm()
+                this.refresh()
+            })
+        }
     }
 
     refresh(){
@@ -69,11 +127,20 @@ export default class Tickets extends Component {
                     handleRemove={this.handleRemove}
                     openForm={this.openForm}
                     openFormList={this.openFormList}
+                    msgSuccess={this.state.msgSuccess}
+                    closeMsg={this.closeMsg}
                 />
                 <TicketsForm
                     open={this.state.open}
-                    ticket={this.state.ticket}
                     closeForm={this.closeForm}
+                    handleChangeName={this.handleChangeName}
+                    handleChangeSubject={this.handleChangeSubject}
+                    handleChangeDescription={this.handleChangeDescription}
+                    handleAdd={this.handleAdd}
+                    id={this.state.id}
+                    name={this.state.name}
+                    subject={this.state.subject}
+                    description={this.state.description}
                 />
             </div>
         )

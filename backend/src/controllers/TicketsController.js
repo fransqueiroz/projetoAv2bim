@@ -50,7 +50,7 @@ module.exports = {
                 .update({ id, name, subject, description })
                 .where('id', id)
 
-            return response.send();
+            return response.json({ message: "Ticket alterado com sucesso" });
 
         } catch (error) {
             next(error)

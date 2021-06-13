@@ -1,21 +1,8 @@
 import React from 'react'
 
-import FormList from '../Components/FormList'
 
+//eslint-disable-next-line
 export default props => {
-
-    const renderForm = () => {
-
-        if(Object.values(props.ticket).length === 0 ){
-            return (
-                <FormList/>
-            )
-        } else {
-            return(
-                <FormList ticket={props.ticket}/>
-            )
-        }
-    }
 
     return (
         <React.Fragment>
@@ -26,7 +13,39 @@ export default props => {
                     >
                         x
                     </div>
-                    <div className="content">{renderForm()}</div>
+                    <div className="content">
+                        <form className="tickets_forms_container">
+                            <label for="input_name"> Nome:</label>
+                                <input
+                                    id="input_name"
+                                    type="text"
+                                    value={props.name}
+                                    onChange={props.handleChangeName}
+                                    name="name"
+                                />
+                            <label for="input_subject"> Assunto:</label>
+                                <input
+                                    id="input_subject"
+                                    type="text"
+                                    value={props.subject}
+                                    onChange={props.handleChangeSubject}
+                                    name="subject"
+                                />
+                            <label for="input_description"> Descrição:</label>
+                                <textarea
+                                    id="input_description"
+                                    type="text"
+                                    value={props.description}
+                                    onChange={props.handleChangeDescription}
+                                    name="description"
+                                />
+
+                            <div className="buttons_content">
+                                <a id="button_save" className="button" onClick={props.handleAdd}>Enviar</a>
+                                <a id="button_back" className="button" onClick={() => props.closeForm()} >Voltar</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 
