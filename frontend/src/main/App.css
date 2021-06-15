@@ -126,7 +126,7 @@ body{
 .ticketsList .ticket_delete,
 .ticketsList .ticket_update{
     position:absolute;
-    top:20px;
+    bottom:10px;
 	cursor: pointer;
 	transition: all .3s ease-in-out;
 }
