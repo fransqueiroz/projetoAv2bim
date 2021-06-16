@@ -56,3 +56,8 @@ Para editar os dados do ticket, na página principal o usuário deve clicar no b
 o usuário clica no botão: "enviar" e o ticket é atualizado.
 
 Para excluir o ticket, o usuário deve clicar no botão: "excluir" e o ticket selecionado é excluido do sistema.
+
+# Contribuição
+    - Fransérgio da Silva Queiroz
+    - Heitor Fernandes Pires
+    - Yago Prestes Montanari Rabelo
